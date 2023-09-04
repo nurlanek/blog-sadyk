@@ -14,7 +14,7 @@
         <h1>Login</h1>
         <hr>
         <form method="POST">
-           {% csrf_token %}
+            {% csrf_token %}
             {% if error %}
                 <div class="alert alert-danger">
                     {{error}}

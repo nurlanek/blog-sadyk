@@ -1,5 +1,5 @@
 from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from pp.models import Pp, Category
 
 """
@@ -36,6 +36,9 @@ data = {
 
 
 def index(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
     context = {
         "pps": Pp.objects.filter(is_home=True, is_active=True),
         "categories": Category.objects.all()
@@ -44,6 +47,9 @@ def index(request):
 
 
 def pp(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
     context = {
         "pps": Pp.objects.filter(is_active=True),
         "categories": Category.objects.all()
@@ -52,6 +58,9 @@ def pp(request):
 
 
 def pp_details(request, slug):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
     pp = Pp.objects.get(slug=slug)
     return render(request, "pp/production-details.html", {
         "pp": pp
