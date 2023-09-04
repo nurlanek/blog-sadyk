@@ -1,0 +1,17 @@
+{% load static %}
+<div class="card mb-3" >
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ pp.image.url }}" class="img-fluid" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="{% url 'production_details' pp.slug %}">
+          {{ pp.title }}</h5></a>
+
+        <p class="card-text">{{ pp.description|striptags|slice:"0:50" }}</p>
+
+      </div>
+    </div>
+  </div>
+</div>

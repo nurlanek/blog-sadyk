@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'pp/css/style.css' %}">
+{% endblock %}
+
+
+{% block title %} Production {% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-3">
+            {% include 'partials/_categories.html' %}
+        </div>
+        <div class="col-9">
+            <h1>All PP</h1>
+            <hr>
+            {% if pps|length > 0 %}
+            {% for pp in pps %}
+            {% if pp.is_active %}
+            {% include 'pp/partials/_pp.html' %}
+            {% endif %}
+            {% endfor %}
+            {% else %}
+            <div class="alert alert-warning">No Pps</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'pp/css/style.css' %}">
+{% endblock %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-3">
+            {% include 'partials/_categories.html' %}
+        </div>
+        <div class="col-9">
+            <h1>PP</h1>
+            <hr>
+
+            {% for pp in pps %}
+            {% if pp.is_home and pp.is_active %}
+            {% include 'pp/partials/_pp.html' %}
+            {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block js_files %}
+<script src="{% static 'pp/js/script.js' %}"></script>
+
+{% endblock %}
